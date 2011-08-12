@@ -1,0 +1,14 @@
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  min_messages: warning
+development:
+  <<: *common
+  database: cukedolist_dev
+  min_messages: info
+test: &test
+  <<: *common
+  database: cukedolist_test
+cucumber:
+  <<: *test
