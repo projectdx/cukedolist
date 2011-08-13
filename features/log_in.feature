@@ -1,4 +1,4 @@
-@tba @story-1
+@wip @story-1
 Feature: Log In
   The user must log in with his account in order to use the site.
 

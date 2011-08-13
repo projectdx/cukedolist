@@ -26,10 +26,16 @@ begin
       t.profile = 'wip'
     end
 
-    Cucumber::Rake::Task.new({:tba => 'db:test:prepare'}, 'Run features that are being worked analyzed') do |t|
+    Cucumber::Rake::Task.new({:tba => 'db:test:prepare'}, 'Run features that are being analyzed') do |t|
       t.binary = vendored_cucumber_bin
       t.fork = true # You may get faster startup if you set this to false
       t.profile = 'tba'
+    end
+
+    Cucumber::Rake::Task.new({:jw => 'db:test:prepare'}, 'Run features that are being worked on by JW') do |t|
+      t.binary = vendored_cucumber_bin
+      t.fork = true # You may get faster startup if you set this to false
+      t.profile = 'jw'
     end
 
     Cucumber::Rake::Task.new({:rerun => 'db:test:prepare'}, 'Record failing features and run only them if any exist') do |t|
