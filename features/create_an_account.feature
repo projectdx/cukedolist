@@ -1,4 +1,4 @@
-@tba @story-1
+@wip @story-1 @jw
 Feature: Create an Account
   When an anonymous user visits the site and does not yet have an account,
   he will have to create a new account
@@ -13,7 +13,7 @@ Feature: Create an Account
 
   Scenario: Main Success
     When I create an account with a valid email address and password
-    Then I see my new todo list
+    Then I see my todo list
 
   Scenario: Invalid Data for New Account
     When I create an account with an invalid email address or password

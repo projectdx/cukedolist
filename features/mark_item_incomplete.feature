@@ -1,4 +1,4 @@
-@tba @story-1
+@wip @story-1
 Feature: Mark Item Incomplete
   The user marks a todo list item incomplete when a task isn't really finished
 
@@ -16,7 +16,7 @@ Feature: Mark Item Incomplete
       | incomplete | Eat a sandwich  |
       | incomplete   | Take a nap      |
     When I log out
-    And I log back in
+    And I log in
     Then I should see the following items in my todo list:
       | status     | todo            |
       | incomplete   | Make a sandwich |
