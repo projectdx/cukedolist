@@ -7,6 +7,5 @@ class SessionsController < ApplicationController
   end
 
   def new
-    render :nothing => true
   end
 end
