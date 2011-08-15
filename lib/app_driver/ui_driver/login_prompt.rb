@@ -4,6 +4,6 @@ class AppDriver::UIDriver::LoginPrompt
   end
 
   def visible?
-    @browser.current_path == '/login'
+    @browser.current_path == '/session/new'
   end
 end
