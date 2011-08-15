@@ -13,4 +13,11 @@ describe SessionsController do
       response.should redirect_to root_path
     end
   end
+
+  describe '#new' do
+    it 'responds with a 200 status code' do
+      get :new
+      response.status.should == 200
+    end
+  end
 end

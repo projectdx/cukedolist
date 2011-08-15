@@ -13,7 +13,7 @@ module AppDriver
     end
 
     def force_logout
-      visit '/logout'
+      visit '/session/logout'
     end
 
     def go_to_home_page
