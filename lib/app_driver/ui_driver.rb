@@ -15,5 +15,16 @@ module AppDriver
     def force_logout
       visit '/logout'
     end
+
+    def go_to_home_page
+      visit '/'
+    end
+
+    # Queries
+    def has_login_prompt?
+      LoginPrompt.new(@browser).visible?
+    end
   end
 end
+
+require File.join(File.dirname(__FILE__), *%w[ui_driver login_prompt])  # TODO: refactor this out

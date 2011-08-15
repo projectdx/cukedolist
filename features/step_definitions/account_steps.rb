@@ -39,7 +39,7 @@ When /^I choose to log out$/ do
 end
 
 Then /^I am prompted to log in or create an account$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.should have_login_prompt
 end
 
 Then /^I am prompted for my new account details$/ do
