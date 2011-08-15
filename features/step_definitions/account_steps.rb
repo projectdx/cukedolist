@@ -15,11 +15,11 @@ When /^I log out$/ do
 end
 
 When /^I choose to create an account$/ do
-  ui_driver.account_creation_prompt.follow
+  ui_driver.choose_to_create_account
 end
 
 When /^I create an account with a valid email address and password$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.provide_new_account_details
 end
 
 When /^I create an account with an invalid email address or password$/ do
@@ -44,7 +44,7 @@ Then /^I am prompted to log in or create an account$/ do
 end
 
 Then /^I am prompted for my new account details$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.should have_new_account_form
 end
 
 Then /^I see a message that the login attempt failed$/ do

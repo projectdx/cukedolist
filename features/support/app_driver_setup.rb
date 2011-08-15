@@ -5,5 +5,5 @@ def ui_driver
 end
 
 Before do
-  @ui_driver = AppDriver::UIDriver.new(self)
+  @ui_driver = AppDriver::UIDriver.new(:browser => self)
 end

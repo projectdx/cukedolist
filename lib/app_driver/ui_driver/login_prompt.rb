@@ -1,9 +1,9 @@
-class AppDriver::UIDriver::LoginPrompt
-  def initialize(browser)
-    @browser = browser
-  end
+require 'app_driver/ui_driver/ui_component'
 
-  def visible?
-    @browser.current_path == '/session/new'
+class AppDriver::UIDriver::LoginPrompt
+  include AppDriver::UIDriver::UIComponent
+
+  def _visible?
+    browser.current_path == '/session/new'
   end
 end
