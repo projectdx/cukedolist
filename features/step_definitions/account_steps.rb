@@ -15,7 +15,7 @@ When /^I log out$/ do
 end
 
 When /^I choose to create an account$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.account_creation_prompt.follow
 end
 
 When /^I create an account with a valid email address and password$/ do
@@ -40,6 +40,7 @@ end
 
 Then /^I am prompted to log in or create an account$/ do
   ui_driver.should have_login_prompt
+  ui_driver.should have_account_creation_prompt
 end
 
 Then /^I am prompted for my new account details$/ do

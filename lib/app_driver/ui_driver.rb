@@ -24,7 +24,17 @@ module AppDriver
     def has_login_prompt?
       LoginPrompt.new(@browser).visible?
     end
+
+    def has_account_creation_prompt?
+      account_creation_prompt.visible?
+    end
+
+    def account_creation_prompt
+      AccountCreationPrompt.new(@browser)
+    end
   end
 end
 
-require File.join(File.dirname(__FILE__), *%w[ui_driver login_prompt])  # TODO: refactor this out
+# TODO: refactor these out
+require File.join(File.dirname(__FILE__), *%w[ui_driver login_prompt])
+require File.join(File.dirname(__FILE__), *%w[ui_driver account_creation_prompt])
