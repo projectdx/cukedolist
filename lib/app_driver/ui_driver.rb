@@ -1,40 +1,42 @@
-module AppDriver
-  class UIDriver
-    class Unexpected500 < Exception
-    end
+class AppDriver::UIDriver
+  Dir[Rails.root.join("lib/app_driver/ui_driver/**/*.rb")].each {|f| require f}
 
-    def initialize(browser)
-      @browser = browser
-    end
+  include HasBrowser
 
-    def visit(*args)
-      @browser.visit *args
-      raise Unexpected500 if @browser.page.has_css?('head title', :text => 'Internal Server Error')
-    end
+  class << self
+    def ui_component(component_name)
+      component_class = ('AppDriver::UIDriver::' + component_name.to_s.camelize).constantize
 
-    def force_logout
-      visit '/session/logout'
-    end
+      define_method(component_name) do
+        component_class.new(:browser => browser)
+      end
 
-    def go_to_home_page
-      visit '/'
-    end
-
-    # Queries
-    def has_login_prompt?
-      LoginPrompt.new(@browser).visible?
-    end
-
-    def has_account_creation_prompt?
-      account_creation_prompt.visible?
-    end
-
-    def account_creation_prompt
-      AccountCreationPrompt.new(@browser)
+      define_method("has_#{component_name}?") do
+        send(component_name).visible?
+      end
     end
   end
-end
 
-# TODO: refactor these out
-require File.join(File.dirname(__FILE__), *%w[ui_driver login_prompt])
-require File.join(File.dirname(__FILE__), *%w[ui_driver account_creation_prompt])
+  ui_component :login_prompt
+  ui_component :account_creation_prompt
+  ui_component :new_account_form
+
+  def force_logout
+    visit '/session/logout'
+  end
+
+  def go_to_home_page
+    visit '/'
+  end
+
+  def choose_to_create_account
+    account_creation_prompt.follow
+  end
+
+  def provide_new_account_details
+    new_account_form.email_address = "test-user-#{`uuidgen`.strip}@example.com"
+    new_account_form.password = "a valid password"
+    new_account_form.password_confirmation = "a valid password"
+    new_account_form.submit
+  end
+end
