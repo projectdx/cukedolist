@@ -4,7 +4,7 @@ class AppDriver::UIDriver::NewAccountForm
   include AppDriver::UIDriver::UIComponent
 
   def _visible?
-    browser.current_path == '/account/new'
+    browser.page.has_css?('#new_account')
   end
 
   def email_address=(email)
