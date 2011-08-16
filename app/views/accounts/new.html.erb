@@ -1,0 +1,9 @@
+<%= form_for @account, :url => account_path do |f| %>
+  <p><%= f.label :email_address %>
+    <%= f.text_field :email_address %></p>
+  <p><%= f.label :password %>
+    <%= f.password_field :password %></p>
+  <p><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %></p>
+  <p><%= submit_tag 'Create Account' %></p>
+<% end %>

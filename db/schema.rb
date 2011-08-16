@@ -10,6 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20110816182006) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "email_address", :null => false
+    t.string   "password",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "accounts", ["email_address"], :name => "index_accounts_on_email_address", :unique => true
 
 end
