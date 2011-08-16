@@ -21,6 +21,7 @@ class AppDriver::UIDriver
   ui_component :account_creation_prompt
   ui_component :new_account_form
   ui_component :todo_list
+  ui_component :validation_error
 
   def force_logout
     visit '/session/logout'
@@ -34,10 +35,13 @@ class AppDriver::UIDriver
     account_creation_prompt.follow
   end
 
-  def provide_new_account_details
-    new_account_form.email_address = "test-user-#{`uuidgen`.strip}@example.com"
-    new_account_form.password = "a valid password"
-    new_account_form.password_confirmation = "a valid password"
+  def provide_new_account_details(params = {})
+    params.reverse_merge!(:email_address => "test-user-#{`uuidgen`.strip}@example.com",
+                          :password => 'a valid password',
+                          :password_confirmation => 'a valid password')
+    new_account_form.email_address = params[:email_address]
+    new_account_form.password = params[:password]
+    new_account_form.password_confirmation = params[:password_confirmation]
     new_account_form.submit
   end
 end

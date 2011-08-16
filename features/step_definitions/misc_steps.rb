@@ -3,5 +3,5 @@ When /^I visit the site$/ do
 end
 
 Then /^I see a validation error$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.should have_validation_error
 end
