@@ -8,5 +8,15 @@ describe AccountsController do
       get :new
       response.status.should == 200
     end
+
+    it 'renders the new account template' do
+      get :new
+      response.should render_template('accounts/new')
+    end
+
+    it 'sets #account to a new account record' do
+      get :new
+      controller.account.should be_new_record(Account)
+    end
   end
 end
