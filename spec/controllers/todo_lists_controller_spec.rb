@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe TodoListsController do
+  it_has_singular_resource_routing('todo_lists')
+
   describe '#show' do
     it 'should be routed from the root path' do
       {:get => '/'}.should route_to(:controller => 'todo_lists', :action => 'show')
