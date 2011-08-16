@@ -21,6 +21,7 @@ class AppDriver::UIDriver::NewAccountForm
 
   def submit
     click_on 'Create Account'
+    no_500_error!
   end
 
   private
