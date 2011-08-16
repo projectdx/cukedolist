@@ -23,7 +23,7 @@ When /^I create an account with a valid email address and password$/ do
 end
 
 When /^I create an account with an invalid email address or password$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.provide_new_account_details(:password => 'a', :password_confirmation => 'b')
 end
 
 When /^I log in with a valid email address and password$/ do
