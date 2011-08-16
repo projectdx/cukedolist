@@ -1,3 +1,10 @@
+<% unless @account.errors.empty? %>
+  <ul id="form_validation_error">
+    <% @account.errors.full_messages.each do |m| %>
+      <li><%= m %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for @account, :url => account_path do |f| %>
   <p><%= f.label :email_address %>
     <%= f.text_field :email_address %></p>
