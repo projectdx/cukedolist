@@ -20,6 +20,7 @@ class AppDriver::UIDriver
   ui_component :login_prompt
   ui_component :account_creation_prompt
   ui_component :new_account_form
+  ui_component :todo_list
 
   def force_logout
     visit '/session/logout'
