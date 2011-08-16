@@ -1,4 +1,4 @@
-@wip @story-1 @jw
+@story-1
 Feature: Create an Account
   When an anonymous user visits the site and does not yet have an account,
   he will have to create a new account
