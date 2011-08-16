@@ -28,6 +28,6 @@ class ApplicationController < ActionController::Base
   private
 
   def require_authenticated_user
-    redirect_to new_session_path
+    redirect_to new_session_path if current_account.nil?
   end
 end

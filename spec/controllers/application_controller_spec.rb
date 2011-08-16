@@ -12,6 +12,12 @@ describe ApplicationController do
     response.should redirect_to new_session_path
   end
 
+  it 'does not redirect logged-in users to the login page' do
+    Account.stub(:find => mock_model(Account))
+    get :index, {}, :account_id => 42
+    response.status.should == 200
+  end
+
   describe '#current_account' do
     context 'when session contains no account_id' do
       it 'returns nil' do
