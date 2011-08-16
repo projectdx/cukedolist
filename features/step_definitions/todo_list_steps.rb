@@ -30,7 +30,7 @@ Then /^I should see the following items in my todo list:$/ do |table|
 end
 
 Then /^I see my todo list$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.should have_todo_list
 end
 
 Then /^I do not see my todo list$/ do
