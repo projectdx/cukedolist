@@ -1,6 +1,6 @@
 require 'app_driver/ui_driver/ui_component'
 
-class AppDriver::UIDriver::NewAccountForm
+class AppDriver::UIDriver::LoginForm
   include AppDriver::UIDriver::UIComponent
 
   def email_address=(email)
@@ -11,22 +11,18 @@ class AppDriver::UIDriver::NewAccountForm
     fill_in 'Password', :with => password
   end
 
-  def password_confirmation=(password)
-    fill_in 'Password confirmation', :with => password
-  end
-
   def submit
-    click_on 'Create Account'
+    click_on 'Log In'
     no_500_error!
   end
 
   private
 
   def _visible?
-    browser.page.has_css?('#new_account')
+    browser.current_path == '/session/new'
   end
 
   def component_locator
-    '#new_account'
+    '#new_session'
   end
 end

@@ -15,7 +15,21 @@ module AppDriver::UIDriver::UIComponent
     _visible?
   end
 
+  private
+
+  def in_component(&blk)
+    browser.within(component_locator, &blk)
+  end
+
   def _visible?
-    raise "Including class's responsibility!"
+    browser.page.has_css?(component_locator)
+  end
+
+  def fill_in(locator, options)
+    in_component { browser.fill_in(locator, options) }
+  end
+
+  def click_on(locator)
+    in_component { browser.click_on(locator) }
   end
 end

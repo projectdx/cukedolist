@@ -17,7 +17,7 @@ class AppDriver::UIDriver
     end
   end
 
-  ui_component :login_prompt
+  ui_component :login_form
   ui_component :account_creation_prompt
   ui_component :new_account_form
   ui_component :todo_list
@@ -43,5 +43,11 @@ class AppDriver::UIDriver
     new_account_form.password = params[:password]
     new_account_form.password_confirmation = params[:password_confirmation]
     new_account_form.submit
+  end
+
+  def log_in(user_details)
+    login_form.email_address = user_details[:email_address]
+    login_form.password = user_details[:password]
+    login_form.submit
   end
 end
