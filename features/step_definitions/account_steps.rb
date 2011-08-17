@@ -1,5 +1,5 @@
 Given /^I have an account$/ do
-  api_driver.create_account
+  @user_details = api_driver.create_account
 end
 
 Given /^I am not logged in$/ do
@@ -7,7 +7,7 @@ Given /^I am not logged in$/ do
 end
 
 When /^I log in$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.log_in @user_details
 end
 
 When /^I log out$/ do
@@ -39,7 +39,7 @@ When /^I choose to log out$/ do
 end
 
 Then /^I am prompted to log in or create an account$/ do
-  ui_driver.should have_login_prompt
+  ui_driver.should have_login_form
   ui_driver.should have_account_creation_prompt
 end
 
