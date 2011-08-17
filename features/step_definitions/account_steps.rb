@@ -1,5 +1,5 @@
 Given /^I have an account$/ do
-  pending # express the regexp above with the code you wish you had
+  api_driver.create_account
 end
 
 Given /^I am not logged in$/ do
