@@ -1,1 +1,9 @@
 <%= link_to 'Create an account', new_account_path %>
+
+<%= form_for controller.login_session, :url => session_path do |f| %>
+  <p><%= f.label :email_address %>
+    <%= f.text_field :email_address %></p>
+  <p><%= f.label :password %>
+    <%= f.password_field :password %></p>
+  <p><%= submit_tag 'Log In' %></p>
+<% end %>

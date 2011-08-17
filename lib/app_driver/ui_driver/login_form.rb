@@ -23,6 +23,6 @@ class AppDriver::UIDriver::LoginForm
   end
 
   def component_locator
-    '#new_session'
+    '#new_login_session'
   end
 end
