@@ -9,7 +9,7 @@ class AppDriver::UIDriver::MainMenu
 
   def has_logout_link?
     in_component do
-      browser.has_css('#logout')
+      browser.has_css?('#logout')
     end
   end
 
