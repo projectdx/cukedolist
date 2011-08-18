@@ -20,8 +20,12 @@ class LoginSession
   end
 
   def authenticate!
-    @account = Account.find_by_email_address_and_password(@email_address, @password)
-    raise AccessDenied.new("Authentication failed", self) if @account.nil?
+    @account = Account.find_by_email_address_and_password(@email_address, @password).tap do |account|
+      if account.nil?
+        @failed = true
+        raise AccessDenied.new("Authentication failed", self)
+      end
+    end
   end
 
   def initialize(attributes = {})
@@ -36,5 +40,9 @@ class LoginSession
 
   def persisted?
     false
+  end
+
+  def failed?
+    @failed ||= false
   end
 end
