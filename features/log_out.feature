@@ -1,4 +1,4 @@
-@wip @story-1 @jw
+@story-1
 Feature: Log Out
   The user logs out of the system and must log back in to use it again
 
