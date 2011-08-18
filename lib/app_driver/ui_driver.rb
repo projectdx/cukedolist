@@ -20,6 +20,8 @@ class AppDriver::UIDriver
     end
   end
 
+  attr_reader :test_data
+
   ui_component :main_menu
   ui_component :login_form
   ui_component :account_creation_prompt
@@ -29,6 +31,11 @@ class AppDriver::UIDriver
 
   def_delegator :login_form, :has_authentication_failure_message?
   def_delegator :main_menu, :log_out
+
+  def initialize(opts = {})
+    super
+    @test_data = opts.fetch(:test_data)
+  end
 
   def force_logout
     visit '/session/logout'
@@ -52,10 +59,15 @@ class AppDriver::UIDriver
     new_account_form.submit
   end
 
-  def log_in(user_details)
+  def log_in(user_key = 'default')
+    user = if user_key.kind_of?(Hash)
+             user_key
+           else
+             test_data.user.fetch(user_key)
+           end
     login_form.show!
-    login_form.email_address = user_details[:email_address]
-    login_form.password = user_details[:password]
+    login_form.email_address = user[:email_address]
+    login_form.password = user[:password]
     login_form.submit
   end
 end
