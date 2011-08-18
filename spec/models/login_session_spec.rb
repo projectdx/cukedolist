@@ -27,12 +27,23 @@ describe LoginSession do
     end
 
     context 'when email_address and password do not match an existing account' do
-      it 'raises an AccessDenied exception' do
+      let(:login_session) do
+        LoginSession.new(:email_address => 'test@example.com', :password => 'foo')
+      end
+
+      before(:each) do
         Account.should_receive(:find_by_email_address_and_password) \
           .with('test@example.com', 'foo') \
           .and_return(nil)
-        login_session = LoginSession.new(:email_address => 'test@example.com', :password => 'foo')
+      end
+
+      it 'raises an AccessDenied exception' do
         lambda { login_session.authenticate! }.should raise_exception(LoginSession::AccessDenied)
+      end
+
+      it 'sets #failed? to true' do
+        login_session.authenticate! rescue nil
+        login_session.should be_failed
       end
     end
   end

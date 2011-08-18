@@ -1,6 +1,11 @@
 <%= link_to 'Create an account', new_account_path, :id => 'account_creation_prompt' %>
 
 <%= form_for controller.login_session, :url => session_path do |f| %>
+  <% if controller.login_session.failed? %>
+    <p id="authentication_failed">
+    The email address and/or password you entered is incorrect. Please try again.
+    </p>
+  <% end %>
   <p><%= f.label :email_address %>
     <%= f.text_field :email_address %></p>
   <p><%= f.label :password %>
