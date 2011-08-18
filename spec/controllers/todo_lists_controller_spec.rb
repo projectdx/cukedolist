@@ -14,5 +14,13 @@ describe TodoListsController do
         response.should redirect_to new_session_path
       end
     end
+
+    context 'when the user is logged in' do
+      it 'renders the show template' do
+        Account.stub!(:find => mock_model(Account))
+        get :show, {}, :account_id => 42
+        response.should render_template('todo_lists/show')
+      end
+    end
   end
 end
