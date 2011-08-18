@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "Main menu behavior" do
   it 'displays a log out link when the user is signed in' do
-    user = api_driver.create_account
-    ui_driver.log_in user
+    api_driver.create_account
+    ui_driver.log_in
     ui_driver.main_menu.should have_logout_link
   end
 

@@ -9,6 +9,9 @@ def api_driver
 end
 
 Before do
-  @ui_driver = AppDriver::UIDriver.new(:browser => Capybara.current_session)
-  @api_driver = AppDriver::APIDriver.new(:app => Capybara.app)
+  test_data = AppDriver::TestData.new
+  @ui_driver = AppDriver::UIDriver.new(:browser => Capybara.current_session,
+                                       :test_data => test_data)
+  @api_driver = AppDriver::APIDriver.new(:app => Capybara.app,
+                                         :test_data => test_data)
 end

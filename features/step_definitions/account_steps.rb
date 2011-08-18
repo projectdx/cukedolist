@@ -1,5 +1,5 @@
 Given /^I have an account$/ do
-  @user_details = api_driver.create_account
+  api_driver.create_account
 end
 
 Given /^I am not logged in$/ do
@@ -7,11 +7,11 @@ Given /^I am not logged in$/ do
 end
 
 Given /^I am logged in$/ do
-  ui_driver.log_in @user_details
+  ui_driver.log_in
 end
 
 When /^I log in$/ do
-  ui_driver.log_in @user_details
+  ui_driver.log_in
 end
 
 When /^I log out$/ do
