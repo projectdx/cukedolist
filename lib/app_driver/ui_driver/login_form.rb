@@ -16,6 +16,12 @@ class AppDriver::UIDriver::LoginForm
     no_500_error!
   end
 
+  def has_authentication_failure_message?
+    in_component do
+      browser.page.has_css?('#authentication_failed')
+    end
+  end
+
   private
 
   def _visible?

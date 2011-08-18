@@ -31,7 +31,7 @@ When /^I log in with a valid email address and password$/ do
 end
 
 When /^I attempt to log in with an invalid email address or password$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.log_in :email_address => 'invalid@example.com', :password => 'wrongpass'
 end
 
 When /^I choose to log out$/ do
@@ -48,7 +48,7 @@ Then /^I am prompted for my new account details$/ do
 end
 
 Then /^I see a message that the login attempt failed$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.should have_authentication_failure_message
 end
 
 Then /^I see a message welcoming me to the site as a new user$/ do

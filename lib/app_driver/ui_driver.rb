@@ -1,10 +1,13 @@
 class AppDriver::UIDriver
-  Dir[Rails.root.join("lib/app_driver/ui_driver/**/*.rb")].each {|f| require f}
+  require 'app_driver/ui_driver/has_browser'
 
   include HasBrowser
+  extend Forwardable
 
   class << self
     def ui_component(component_name)
+      require "app_driver/ui_driver/#{component_name}"
+
       component_class = ('AppDriver::UIDriver::' + component_name.to_s.camelize).constantize
 
       define_method(component_name) do
@@ -22,6 +25,8 @@ class AppDriver::UIDriver
   ui_component :new_account_form
   ui_component :todo_list
   ui_component :validation_error
+
+  def_delegator :login_form, :has_authentication_failure_message?
 
   def force_logout
     visit '/session/logout'
