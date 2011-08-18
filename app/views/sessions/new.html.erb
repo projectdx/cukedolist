@@ -1,4 +1,4 @@
-<%= link_to 'Create an account', new_account_path %>
+<%= link_to 'Create an account', new_account_path, :id => 'account_creation_prompt' %>
 
 <%= form_for controller.login_session, :url => session_path do |f| %>
   <p><%= f.label :email_address %>
