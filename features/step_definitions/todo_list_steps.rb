@@ -34,5 +34,5 @@ Then /^I see my todo list$/ do
 end
 
 Then /^I do not see my todo list$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.should_not have_todo_list
 end
