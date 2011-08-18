@@ -1,4 +1,4 @@
-@wip @story-1
+@wip @story-1 @jw
 Feature: Add a Todo Item
   The user adds a new item to his todo list
 

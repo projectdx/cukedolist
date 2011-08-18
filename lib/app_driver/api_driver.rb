@@ -23,4 +23,18 @@ class AppDriver::APIDriver
     raise "Account creation failed (#{last_response.status})" unless last_response.status == 201
     test_data.user['default'] = {:email_address => email, :password => password}
   end
+
+  # TODO: this isn't right
+  def get_account
+    test_data.user['default'] ||= create_account
+  end
+
+  def delete_todo_list
+    todo_list_id = get_account.fetch(:todo_list_id)
+    unless todo_list_id.nil?
+      delete "/api/v1/todo_lists/#{todo_list_id}"
+      raise "TodoList deletion failed (#{todo_list_id})" unless last_response.status == 200
+      todo_list_id = nil
+    end
+  end
 end
