@@ -6,12 +6,16 @@ Given /^I am not logged in$/ do
   ui_driver.force_logout
 end
 
+Given /^I am logged in$/ do
+  ui_driver.log_in @user_details
+end
+
 When /^I log in$/ do
   ui_driver.log_in @user_details
 end
 
 When /^I log out$/ do
-  pending # express the regexp above with the code you wish you had
+  ui_driver.log_out
 end
 
 When /^I choose to create an account$/ do

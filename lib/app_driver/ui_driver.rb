@@ -20,6 +20,7 @@ class AppDriver::UIDriver
     end
   end
 
+  ui_component :main_menu
   ui_component :login_form
   ui_component :account_creation_prompt
   ui_component :new_account_form
@@ -27,6 +28,7 @@ class AppDriver::UIDriver
   ui_component :validation_error
 
   def_delegator :login_form, :has_authentication_failure_message?
+  def_delegator :main_menu, :log_out
 
   def force_logout
     visit '/session/logout'
@@ -51,6 +53,7 @@ class AppDriver::UIDriver
   end
 
   def log_in(user_details)
+    login_form.show!
     login_form.email_address = user_details[:email_address]
     login_form.password = user_details[:password]
     login_form.submit

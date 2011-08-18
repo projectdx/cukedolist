@@ -22,6 +22,12 @@ class AppDriver::UIDriver::LoginForm
     end
   end
 
+  def show!
+    unless visible?
+      visit '/session/new'
+    end
+  end
+
   private
 
   def component_locator
