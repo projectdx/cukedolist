@@ -4,6 +4,11 @@ describe SessionsController do
   it_has_singular_resource_routing('sessions')
 
   describe '#logout' do
+    it 'is routed from /session/logout' do
+      {:get => '/session/logout'}.should route_to(:controller => 'sessions', :action => 'logout')
+      logout_session_path.should == '/session/logout'
+    end
+
     it 'resets the session' do
       session[:foo] = 'bar'
       get :logout

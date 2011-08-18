@@ -76,4 +76,16 @@ describe ApplicationController do
       lambda { controller.current_account = "Hello, World!" }.should raise_error(ArgumentError, "Only objects of type Account can be assigned.")
     end
   end
+
+  describe '#logged_in?' do
+    it 'returns true if #current_account is not nil' do
+      controller.stub!(:current_account => mock_model(Account))
+      controller.should be_logged_in
+    end
+
+    it 'returns false if #current_account is nil' do
+      controller.stub!(:current_account => nil)
+      controller.should_not be_logged_in
+    end
+  end
 end

@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def logged_in?
+    current_account.present?
+  end
+  helper_method :logged_in?
+
   private
 
   def require_authenticated_user
