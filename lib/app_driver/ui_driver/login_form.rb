@@ -18,15 +18,11 @@ class AppDriver::UIDriver::LoginForm
 
   def has_authentication_failure_message?
     in_component do
-      browser.page.has_css?('#authentication_failed')
+      browser.has_css?('#authentication_failed')
     end
   end
 
   private
-
-  def _visible?
-    browser.current_path == '/session/new'
-  end
 
   def component_locator
     '#new_login_session'
