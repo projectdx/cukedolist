@@ -23,7 +23,7 @@ class AppDriver::UIDriver::NewAccountForm
   private
 
   def _visible?
-    browser.page.has_css?('#new_account')
+    browser.has_css?('#new_account')
   end
 
   def component_locator

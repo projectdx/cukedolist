@@ -22,7 +22,7 @@ module AppDriver::UIDriver::UIComponent
   end
 
   def _visible?
-    browser.page.has_css?(component_locator)
+    browser.has_css?(component_locator)
   end
 
   def fill_in(locator, options)

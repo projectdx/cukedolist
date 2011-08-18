@@ -17,6 +17,6 @@ module AppDriver::UIDriver::HasBrowser
   end
 
   def no_500_error!
-    raise Unexpected500 if browser.page.has_css?('head title', :text => 'Internal Server Error')
+    raise Unexpected500 if browser.has_css?('head title', :text => 'Internal Server Error')
   end
 end
