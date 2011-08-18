@@ -1,5 +1,5 @@
 Given /^my todo list is empty$/ do
-  pending # express the regexp above with the code you wish you had
+  api_driver.delete_todo_list
 end
 
 Given /^my todo list contains the following items:$/ do |table|
