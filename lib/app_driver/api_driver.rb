@@ -19,7 +19,7 @@ class AppDriver::APIDriver
     }.to_json
     header 'Content-Type', 'application/json'
     header 'Accept', 'application/json'
-    post '/api/v1/accounts', account_json
+    post '/api/v1/users', account_json
     raise "Account creation failed (#{last_response.status})" unless last_response.status == 201
     test_data.user['default'] = HashWithIndifferentAccess.new(JSON.parse(last_response.body))[:account]
   end

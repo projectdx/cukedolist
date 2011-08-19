@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
   attr_reader :account
+  # TODO add attr_reader for errors and use that in new.html.erb template to
+  # avoid Demeter violation
 
   skip_before_filter :require_authenticated_user, :only => [:new, :create]
 

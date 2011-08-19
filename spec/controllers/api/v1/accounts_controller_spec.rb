@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Api::V1::AccountsController do
-  it_has_resource_routing('api/v1/accounts')
+  it_has_resource_routing('api/v1/accounts', 'api/v1/users')
 
   describe '#create' do
     context 'with valid data' do

@@ -1,11 +1,11 @@
-<% unless @account.errors.empty? %>
+<% unless controller.account.errors.empty? %>
   <ul id="form_validation_error">
-    <% @account.errors.full_messages.each do |m| %>
+    <% controller.account.errors.full_messages.each do |m| %>
       <li><%= m %></li>
     <% end %>
   </ul>
 <% end %>
-<%= form_for @account, :url => account_path do |f| %>
+<%= form_for controller.account, :url => user_path do |f| %>
   <p><%= f.label :email_address %>
     <%= f.text_field :email_address %></p>
   <p><%= f.label :password %>

@@ -1,21 +1,21 @@
 module CustomControllerMacros
-  def it_has_singular_resource_routing(controller_name)
-    singular_name = controller_name.singularize
-    show_route = "/#{singular_name}"
-    new_route = "/#{singular_name}/new"
+  def it_has_singular_resource_routing(controller_name, resource_name = nil)
+    resource_name ||= controller_name.singularize
+    show_route = "/#{resource_name}"
+    new_route = "/#{resource_name}/new"
     create_route = show_route
-    edit_route = "/#{singular_name}/edit"
+    edit_route = "/#{resource_name}/edit"
     update_route = show_route
     destroy_route = show_route
 
     it "has a singular resource route to the show action" do
       {:get => show_route}.should route_to(:controller => controller_name, :action => 'show')
-      eval("#{singular_name}_path").should == show_route
+      eval("#{resource_name}_path").should == show_route
     end
 
     it "has a singular resource route to the new action" do
       {:get => new_route}.should route_to(:controller => controller_name, :action => 'new')
-      eval("new_#{singular_name}_path").should == new_route
+      eval("new_#{resource_name}_path").should == new_route
     end
 
     it "has a singular resource route to the create action" do
@@ -24,7 +24,7 @@ module CustomControllerMacros
 
     it "has a singular resource route to the edit action" do
       {:get => edit_route}.should route_to(:controller => controller_name, :action => 'edit')
-      eval("edit_#{singular_name}_path").should == edit_route
+      eval("edit_#{resource_name}_path").should == edit_route
     end
 
     it "has a singular resource route to the update action" do
@@ -36,9 +36,10 @@ module CustomControllerMacros
     end
   end
 
-  def it_has_resource_routing(controller_name)
-    method_name = controller_name.gsub('/', '_')
-    index_route = "/#{controller_name}"
+  def it_has_resource_routing(controller_name, resource_name = nil)
+    resource_name ||= controller_name
+    method_name = resource_name.gsub('/', '_')
+    index_route = "/#{resource_name}"
     index_method = method_name + '_path'
     show_route = "#{index_route}/42"
     show_method = method_name.singularize + '_path'
