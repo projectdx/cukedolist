@@ -1,4 +1,4 @@
-class Api::V1::AccountsController < ActionController::Base
+class Api::V1::UsersController < ActionController::Base
   def create
     account = Account.create!(params[:account])
     render :json => account, :status => 201

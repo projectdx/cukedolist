@@ -5,7 +5,7 @@ Cukedolist::Application.routes.draw do
   resource :todo_list
   namespace :api do
     namespace :v1 do
-      resources :users, :controller => 'accounts'
+      resources :users
     end
   end
   root :to => 'todo_lists#show'
