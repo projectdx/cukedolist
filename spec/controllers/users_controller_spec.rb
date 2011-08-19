@@ -14,9 +14,9 @@ describe UsersController do
       response.should render_template('users/new')
     end
 
-    it 'sets #account to a new account record' do
+    it 'sets #user to a new account record' do
       get :new
-      controller.account.should be_new_record(Account)
+      controller.user.should be_new_record(Account)
     end
   end
 
@@ -74,8 +74,8 @@ describe UsersController do
         response.should render_template('users/new')
       end
 
-      it 'sets account to the invalid account record' do
-        controller.account.should == account
+      it 'sets user to the invalid account record' do
+        controller.user.should == account
       end
 
       it "sets #errors to the full_messages for the account's errors" do

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  attr_reader :account, :errors
+  attr_reader :user, :errors
 
   skip_before_filter :require_authenticated_user, :only => [:new, :create]
 
@@ -9,15 +9,15 @@ class UsersController < ApplicationController
   end
 
   def new
-    @account = Account.new
+    @user = Account.new
   end
 
   def create
     self.current_account = Account.create!(params[:account])
     redirect_to todo_list_path
   rescue ActiveRecord::RecordInvalid => e
-    @account = e.record
-    @errors = @account.errors.full_messages
+    @user = e.record
+    @errors = @user.errors.full_messages
     render :action => :new, :status => 403
   end
 end
