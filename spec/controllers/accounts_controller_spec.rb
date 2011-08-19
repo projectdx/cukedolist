@@ -53,7 +53,11 @@ describe AccountsController do
     end
 
     context 'with invalid data' do
-      let(:account) { mock_model(Account) }
+      let(:account) do
+        mock_model(Account).tap do |m|
+          m.stub(:errors => stub(:full_messages => %w(one two three)))
+        end
+      end
 
       before(:each) do
         exception = ActiveRecord::RecordInvalid.allocate
@@ -73,6 +77,16 @@ describe AccountsController do
       it 'sets account to the invalid account record' do
         controller.account.should == account
       end
+
+      it "sets #errors to the full_messages for the account's errors" do
+        controller.errors.should == %w(one two three)
+      end
+    end
+  end
+
+  describe '#errors' do
+    it 'defaults to an empty array' do
+      controller.errors.should == []
     end
   end
 end

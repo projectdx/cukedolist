@@ -1,9 +1,12 @@
 class AccountsController < ApplicationController
-  attr_reader :account
-  # TODO add attr_reader for errors and use that in new.html.erb template to
-  # avoid Demeter violation
+  attr_reader :account, :errors
 
   skip_before_filter :require_authenticated_user, :only => [:new, :create]
+
+  def initialize
+    super
+    @errors = []
+  end
 
   def new
     @account = Account.new
@@ -14,6 +17,7 @@ class AccountsController < ApplicationController
     redirect_to todo_list_path
   rescue ActiveRecord::RecordInvalid => e
     @account = e.record
+    @errors = @account.errors.full_messages
     render :action => :new, :status => 403
   end
 end

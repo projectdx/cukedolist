@@ -1,6 +1,6 @@
-<% unless controller.account.errors.empty? %>
+<% if controller.errors.any? %>
   <ul id="form_validation_error">
-    <% controller.account.errors.full_messages.each do |m| %>
+    <% controller.errors.each do |m| %>
       <li><%= m %></li>
     <% end %>
   </ul>
