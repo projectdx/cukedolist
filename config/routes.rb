@@ -1,5 +1,5 @@
 Cukedolist::Application.routes.draw do
-  resource :user, :controller => 'accounts'
+  resource :user
   resource :session
   match '/session/logout' => 'sessions#logout', :as => 'logout_session'
   resource :todo_list

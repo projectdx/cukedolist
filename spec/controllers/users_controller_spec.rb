@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe AccountsController do
-  it_has_singular_resource_routing('accounts', 'user')
+describe UsersController do
+  it_has_singular_resource_routing('users')
 
   describe '#new' do
     it 'responds with a 200 status' do
@@ -9,9 +9,9 @@ describe AccountsController do
       response.status.should == 200
     end
 
-    it 'renders the new account template' do
+    it 'renders the new user template' do
       get :new
-      response.should render_template('accounts/new')
+      response.should render_template('users/new')
     end
 
     it 'sets #account to a new account record' do
@@ -70,8 +70,8 @@ describe AccountsController do
         response.status.should == 403
       end
 
-      it 'renders the new account template' do
-        response.should render_template('accounts/new')
+      it 'renders the new user template' do
+        response.should render_template('users/new')
       end
 
       it 'sets account to the invalid account record' do

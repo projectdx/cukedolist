@@ -1,4 +1,4 @@
-class AccountsController < ApplicationController
+class UsersController < ApplicationController
   attr_reader :account, :errors
 
   skip_before_filter :require_authenticated_user, :only => [:new, :create]
